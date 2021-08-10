@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Resolved Request</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="mystyle.css">
+        <style>
+          form{
+            padding-top:10px;
+           
+            height: 60px;
+          }
+          thead{
+            background-color: black;
+            color: white;
+          }
+          body{
+            background-color: blueviolet;
+            background-size: cover;
+          }
+          table{
+            background-color: white;
+          }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: hotpink;">
+                          <img src="logo.jpg" width="30px" height="30px">STAR
+                        </a>
+                      </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="managerHomePage.html">HOME</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="EmployeeRegisteration.html">REGISTRATION</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="AllProfile.html">EMPLOYEE PROFILE</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      REIMBURSEMENT REQUEST
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="allrequest.html">ALL REQUEST</a>
+                      <a class="dropdown-item" href="viewPending.html">PENDING REQUEST</a>
+                      <a class="dropdown-item" href="#">ACCEPTED REQUEST</a>
+                    </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="managerProfile.html">PROFILE</a>
+                  </li> 
+                  <li class="nav-item">
+                    <a class="nav-link" href="logout.html">LOGOUT</a>
+                  </li>              
+                </ul>
+              </nav>
+        </header>
+        <br>
+        <div class="container-fluid">
+            <center>
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col col-md-8">
+                                <input type="number" name="empId" id="empId" placeholder="Enter employee id" class="form-control">
+                               
+                            </div>
+                            <div class="col col-md-4">
+                                <button type="button" class="btn btn-primary" onclick="displayAccepted()" style="float:left;">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </center>
+            <div id="pending"></div>
+            <script>
+              fetch('http://localhost:8080/Reimbursement/webapi/controller/accepted')
+              .then((response)=>response.json())
+              .then((json)=>displayProfile(json))
+              .catch(err=>console.log('Request failed'));
+              function displayProfile(response)
+              {
+                var data1=response;
+                let output=`<table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">RequestId</th>
+                              <th scope="col">First Name</th>
+                              <th scope="col">Last Name</th>
+                              <th scope="col">Email</th>
+                              <th scope="col">Request Date</th>
+                              <th scope="col">Description</th>
+                              <th scope="col">Start Date</th>
+                              <th scope="col">End Date</th>
+                              <th scope="col">Amount</th>
+                              <th scope="col">Employee Id</th>
+                              <th scope="col">Status</th>
+                              </tr>  
+                          </thead>
+                          <tbody>`;
+                 for(var d1 of data1)
+                  {
+                      var req=new Date(d1.requestDate).toLocaleDateString("en-US");
+                      output+=`                          
+                              <tr scope="row">
+                                  <td>${d1.requestId}</td>
+                                  <td>${d1.firstName}</td>
+                                  <td>${d1.lastName}</td>
+                                  <td>${d1.emailId}</td>
+                                  <td>${req}</td>
+                                  <td>${d1.description}</td>
+                                  <td>${d1.startDate}</td>
+                                  <td>${d1.endDate}</td>
+                                  <td>${d1.amount}</td>
+                                  <td>${d1.empId}</td>
+                                  <td style="color:green;font-size:18px">${d1.requestStatus}</td>
+                                  </tr>`;
+                  }
+                  output+=`</tbody></table>`;
+              document.getElementById('pending').innerHTML=output;
+              }
+              function displayAccepted()
+              {
+                var id=document.getElementById("empId").value;
+                if(id=="")
+                {
+                  fetch('http://localhost:8080/Reimbursement/webapi/controller/accepted')
+                  .then((response)=>response.json())
+                  .then((json)=>displayProfile(json))
+                  .catch(err=>console.log('Request failed')); 
+                }
+                var obj={"userId":id};
+                console.log(obj);
+                fetch("http://localhost:8080/Reimbursement/webapi/controller/searchAccepted", {
+                  body: JSON.stringify(obj),
+                  headers: {
+                    "Content-Type": "application/json",
+                    // "Content-Type": "multipart/form-data",
+                  },
+                  method: "POST"
+                })
+              .then((response)=>response.json())
+              .then((json)=>displayProfile(json))
+              .catch(err=>console.log('Request failed'));
+              }
+           </script>
+        </div>
+    </body>
+</html>

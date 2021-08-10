@@ -1,0 +1,202 @@
+.navbar{
+    background-color: purple;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: white;
+    
+}
+
+.container{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.form-design{
+    
+    padding: 10px;
+    padding-top: 30px;
+    width: 60%;
+   text-align: center;
+}
+.dropdown-menu{
+    background-color: purple;
+    
+}
+.dropdown-item{
+    color: white; 
+}
+.dropdown-item:hover{
+    color:blue;
+}
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: purple;
+    color: white;
+    padding: 10px 15px;
+    border-color:white;
+    float: left;
+  }
+  .openbtn:hover {
+    background-color: #444;
+  }
+  .sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidepanel a:hover {
+    color: #d6b3b3;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  .sidepanel {
+    height: 100%; /* Specify a height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: rgb(146, 30, 146); /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 150px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+    margin-top: 60px;
+  }
+  .data-panel{
+    float:left;
+    margin-left:40px;
+   
+    height: 100%;
+    
+   
+}
+
+.side-panel{
+    float:left;
+   
+    border-radius:25px 0 0 25px;
+    background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+   background: linear-gradient(to right, #ee5a6f, #f29263);
+   
+}
+
+
+.site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+.social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
+

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="mystyle.css">
+    <style type="text/css">
+    form{
+        background-color: rgba(236, 152, 222, 0.8);
+    
+        padding-top: 30px;
+        width: 60%;
+       text-align: center;
+       border: 4px solid rgb(255, 252, 252);
+   
+        
+    }
+  
+   
+    .prow{
+        border: 3px solid rgb(112, 33, 33);
+        border-radius:25px;
+    }
+    table{
+        border:none;
+    }
+    tr:hover{
+        background-color:rgb(160, 145, 173);
+    }
+   h2{
+    font-style: italic;
+    padding-top:5%;
+    color: violet;
+   }
+   .allheading{
+       background-color: yellowgreen;
+   }
+   .alldetail{
+       width:70%;
+   }
+    </style>
+</head>
+<body>
+	<header>
+        <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: hotpink;">
+                    <img src="logo.jpg" width="30px" height="30px">
+                    STAR</a>
+                  </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="managerHomePage.html">HOME</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="EmployeeRegisteration.html">REGRISTRATION</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="AllProfile.html">EMPLOYEE PROFILE</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  REIMBURSEMENT REQUEST
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="allrequest.html">ALL REQUEST</a>
+                  <a class="dropdown-item" href="viewPending.html">PENDING REQUEST</a>
+                  <a class="dropdown-item" href="viewAccepted.html">ACCEPTED REQUEST</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="managerProfile.html">PROFILE</a>
+              </li>  
+              <li class="nav-item">
+                <a class="nav-link" href="logout.html">LOGOUT</a>
+              </li>             
+            </ul>
+          </nav>
+    </header>
+	<div>
+        <center>
+            <form>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col col-md-7">
+                            <input type="number" name="empId" id="empId" placeholder="Enter employee id" class="form-control" style="margin-left:10%;">
+                           
+                        </div>
+                        <div class="col col-md-2">
+                            <button type="button" class="btn btn-primary" onclick="displayEmployeeProfile()" style="border-radius: 0px;">Search</button>
+                        </div>
+                        <div class="col col-md-2">
+                            <button type="button" class="btn btn-primary" onclick="displayAllProfile()" style="margin-left:1px;float:left;border-radius: 0px;">View All</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </center>
+    </div>
+        <div>
+           <!--<h2 style="color:indigo;"><center>Profile</center></h2>--> 
+            <center><span id="message"></span></center>
+            <center><div id="profile"></div></center>
+           
+        </div>
+    <script>
+        function displayEmployeeProfile()
+        {
+            var empId=document.getElementById('empId').value;
+            var obj={"userId":empId};
+                console.log(obj);
+                fetch("http://localhost:8080/Reimbursement/webapi/controller/searchProfile", {
+                  body: JSON.stringify(obj),
+                  headers: {
+                    "Content-Type": "application/json",
+                    // "Content-Type": "multipart/form-data",
+                  },
+                  method: "POST"
+                })
+              .then((response)=>response.json())
+              .then((json)=>displayProfile(json))
+              .catch(err=>console.log('Request failed'));
+        }
+       
+        function displayProfile(response)
+        {
+            
+            var data1=response;
+            let output='';
+            var gend='';
+           if(data1=='')
+           {
+            document.getElementById('profile').innerHTML=output;
+            document.getElementById("message").innerHTML= `<i style="color:red">No such employee ID exists</i>`;
+           }
+           
+           for(var d1 of data1)
+            {
+                var birth=new Date(d1.dob).toLocaleDateString("en-US");
+                gend=d1.gender;
+                console.log(d1);
+                output+=`
+                <div class="container">
+                    <div class="row prow">
+                        <div class="col col-md-3 side-panel">
+                               <center id="avatar">
+                                 <!-- <img src="proavatar.png" width="200px" height="200px" style="border-radius:25%;padding-top:20%">--> 
+                                </center> 
+                        </div>
+                        <div class="col col-md-7 data-panel">
+                                <h2 style="color:indigo;padding-bottom: 10px;"><center>Profile</center></h2>
+                        
+                <table class="table table-borderless>
+                    <thead>Profile</thead>
+                    <tbody>
+                        <tr scope="row">
+                            <td>Employee id</td>
+                            <td>${d1.empId}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>First Name</td>
+                            <td>${d1.firstName}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Last Name</td>
+                            <td>${d1.lastName}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Date of birth</td>
+                           
+                            <td>${birth}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Age</td>
+                            <td>${d1.age}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Email id</td>
+                            <td>${d1.emailid}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Designation</td>
+                            <td>${d1.designation}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Door number</td>
+                            <td>${d1.doornumber}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Street name</td>
+                            <td>${d1.street}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>District</td>
+                            <td>${d1.district}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Contact no</td>
+                            <td>${d1.contactno}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Gender</td>
+                            <td>${d1.gender}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Pincode</td>
+                            <td>${d1.pincode}</td>
+                        </tr>
+                `;
+            }
+            output+=`</tbody></table>
+                        </div>
+                    </div>
+                </div>`;
+          
+        document.getElementById('profile').innerHTML=output;
+        if(gend=="male")
+            {
+                document.getElementById('avatar').innerHTML=`<img src="male.png" width="200px" height="200px" style="float: left;border-radius: 50%;">`;
+            }
+            else{
+                document.getElementById('avatar').innerHTML=`<img src="female.png" width="200px" height="200px" style="float: left;border-radius: 50%;">`;
+            }
+        document.getElementById('message').innerHTML='';
+        }
+        function displayAllProfile()
+        {
+            fetch("http://localhost:8080/Reimbursement/webapi/controller/allprofile")
+              .then((response)=>response.json())
+              .then((json)=>displayAllProfileDetails(json))
+              .catch(err=>console.log('Request failed'));
+        }
+        function displayAllProfileDetails(res)
+        {
+            let output='';
+            console.log("hiii");
+            console.log(res);
+            var data1=res;
+            output+=`
+            <center>
+            <table class="table table-striped alldetail" style="padding:10px;">
+                    <thead class="allheading">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">DOB</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Email ID</th>
+                            <th scope="col">Designation</th>
+                            <th scope="col">Door number</th>
+                            <th scope="col">Street name</th>
+                            <th scope="col">District</th>
+                            <th scope="col">Pincode</th>
+                            <th scope="col">Contact no</th>
+                           
+                           
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+            
+            `;
+            document.getElementById('profile').innerHTML=output;
+            for(var d1 of data1)
+            {
+                var birth=new Date(d1.dob).toLocaleDateString("en-US");
+                output+=`
+                   
+                        <tr scope="row">
+                            <td>${d1.empId}</td>
+                            <td>${d1.firstName}</td>
+                            <td>${d1.lastName}</td>
+                            <td>${d1.gender}</td>    
+                            <td>${birth}</td>
+                            <td>${d1.age}</td>
+                            <td>${d1.emailid}</td>
+                            <td>${d1.designation}</td>
+                            <td>${d1.doornumber}</td>
+                            <td>${d1.street}</td>
+                            <td>${d1.district}</td>
+                            <td>${d1.pincode}</td>
+                            <td>${d1.contactno}</td>
+                           
+                                                   
+                        </tr>
+                    
+                `;
+            }
+            output+=`</tbody>
+                    </table>
+                    </center>`;
+            document.getElementById('profile').innerHTML=output;
+        }
+    </script>
+</body>
+</html>

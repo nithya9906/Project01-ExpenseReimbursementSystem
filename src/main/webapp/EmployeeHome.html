@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<link rel="stylesheet" href="mystyle.css">
+				<style>
+					.slideshow-container {
+						max-width: 1000px;
+						position: relative;
+						margin: auto;
+						}
+					.mySlides {
+						display:none;
+					}
+					.show {
+					display: block;
+					}
+					.bottom-left {
+					position: absolute;
+					bottom: 10px;
+					left: 60px;
+					margin: 300px;
+					font-size: 35px;  
+					font-family: Allerta;
+					color: yellow;
+				}
+				</style>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<link rel="stylesheet" type="text/css" href="bootstrap.css">
+				<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+			</head>
+		<body>
+			<header>
+				<center><h1 class="heading">STAR COMPANY</h1></center>
+				<nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="#" style="color: hotpink;">
+							  <img src="logo.jpg" width="30px" height="30px">STAR
+							</a>
+						  </li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+					  <li class="nav-item">
+						<a class="nav-link" href="#">HOME</a>
+					  </li>
+					  <li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						  REIMBURSEMENT REQUEST
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="Request.html">ADD REQUEST</a>
+						  <a class="dropdown-item" href="requestPending.html">PENDING REQUEST</a>
+						  <a class="dropdown-item" href="requestAccepted.html">ACCEPTED REQUEST</a>
+						</div>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="EmployeeProfile.html">PROFILE</a>
+					  </li> 
+					  <li class="nav-item">
+						<a class="nav-link" href="logout.html">LOGOUT</a>
+					  </li>              
+					</ul>
+				  </nav>
+			</header>
+			<div class="slideshow-container" style="max-width:100%" height="550px">
+				<img class="mySlides" src="h1.jpg" style="width:100%;height:550px">
+				<img class="mySlides" src="h22.jpg" style="width:100%;height:550px">
+				<img class="mySlides" src="h33.jpg" style="width:100%;height:550px">
+				<img class="mySlides" src="h4.jpg" style="width:100%;height:550px">
+			</div>
+			<script>
+				var slideIndex = 0;
+				showSlides();
+				function showSlides() {
+					var i;
+					var slides = document.getElementsByClassName("mySlides");
+					for (i = 0; i < slides.length; i++) {
+						slides[i].style.display = "none";
+					}
+					slideIndex++;
+					if (slideIndex > slides.length) {slideIndex = 1}
+					slides[slideIndex-1].style.display = "block";
+					setTimeout(showSlides,2000); // Change image every 2 seconds
+				}
+			</script>
+	<label>
+		<h1 style="font-style: italic;color: blueviolet;"><center><b>Comprehensive learning platforms for everyone!</h1></b></center>
+		<p style="font-size:20px;padding-left: 30px;"><i>With over four decades of experience in managing the systems and workings of global enterprises, 
+			we expertly steer our clients through their digital journey. We do it by enabling the enterprise with an AI-powered core that helps prioritize the execution of change.
+		 We also empower the business with agile digital at scale to deliver unprecedented levels of performance and customer delight. Our always-on learning agenda drives their continuous 
+		 improvement through building and transferring digital skills, expertise, and ideas from our innovation ecosystem.</i></p>
+		<!--<p style="align:right;font-size:10px">The overall idea behind launching an online food ordering and a delivery website is to bridge the gap between consumers and restaurants/food chains/local food shops. In addition to it, the website/app must also possess very high user engagement, making the overall process seamless, and Ordering.co provides such platforms with highly innovative features and thus making it easier for the businesses to break multiple barriers in the online marketplace.</p>
+		
+		<img src="order.jpg" style="width=100%" height="100%"/>-->
+	</label>
+	<div class="container">
+		<div class="row">
+			<div class="col col-md-8">
+				<h2 style="padding-top: 10%;">Artificial Intelligence Technology</h2>
+			</div>
+			<div class="col col-md-4">
+				<img src="d9.jpg" width="300px" height="300px">
+			</div>
+		</div>
+			<div class="row">
+				<div class="col col-md-4">
+					<img src="d1.jpg" width="300px" height="300px">
+				</div>
+				<div class="col col-md-8">
+					<h3 style="padding-top: 10%;">Work hard and Earn more</h3>
+				</div>
+		   </div>
+			<div class="row">
+				<div class="col col-md-8">
+					<h2 style="padding-top: 10%;">Digital Transformation Experience</h2>
+				</div>
+				<div class="col col-md-4">
+					<img src="d2.jpg" width="300px" height="300px">
+				</div>
+			</div>
+		<br>
+		<div class="row">
+			<div class="col col-md-4">
+				<img src="d10.jpg" width="300px" height="300px">
+			</div>
+			<div class="col col-md-8">
+				<h2 style="padding-top:10%;">Increase in Stock market</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-md-8">
+				<h2 style="padding-top: 10%;">Personalised E-learning programs</h2>
+			</div>
+			<div class="col col-md-4">
+				<img src="d7.jpg" width="300px" height="300px">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-md-4">
+				<img src="d8.jpg" width="300px" height="300px">
+			</div>
+			<div class="col col-md-8">
+				<h3 style="padding-top: 10%;">Future of payments on BitCoins</h3>
+			</div>
+		</div>
+		</div>
+		<br>
+	</div>
+	 <!-- Site footer -->
+	 <footer class="site-footer">
+		<div class="container">
+		  <div class="row">
+			<div class="col-sm-12 col-md-6">
+			  <h6>Contact US</h6>
+			  <p class="text-justify">NT COMPANY<br>
+				43-SOUTH STREET,<br>
+				VADAPALANI,
+				CHENNAI-660004.
+			</p>
+			<p>EMAIL:nt@gmail.com</p>
+			</div>
+			
+		  </div>
+		  <hr>
+		</div>
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-8 col-sm-6 col-xs-12">
+			  <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
+		   <a href="#">NT</a>.
+			  </p>
+			</div>
+  
+			<div class="col-md-4 col-sm-6 col-xs-12">
+			  <ul class="social-icons">
+				<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+				<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+				<li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+				<li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+			  </ul>
+			</div>
+		  </div>
+		</div>
+  </footer>
+	<!--<footer><center>
+				<b><h4><u>Contact us:</u></h4>
+				<span style='font-size:20px;'>&#128105;</span> S.DEEPIKA
+				</br>
+				<span style='font-size:20px;'>&#128222;</span> Phone No: 7639453950
+				</br>
+				<span style='font-size:20px;'>&#9993;</span> Email ID: deepikarajan99@gmail.com
+				</b>
+				</label>
+				</br>
+				
+				<img src="hd.png" style="width:15%;height:15%;border:20;margin-left:50px"/>
+				</address></center>
+		</footer>-->
+	</body>
+</html>

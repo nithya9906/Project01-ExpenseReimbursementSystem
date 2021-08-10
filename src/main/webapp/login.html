@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<body>
+	<div class="background">
+       
+		<div class="form-body">
+			<center><h2 style="color:yellow;">STAR COMPANY</h2></center>
+			<div class="container">
+			<center><img src="login2.png" height="30%" width="30%"></center>
+				<h2><p><center>Login</center></p></h2><br>
+				<form id="loginForm">
+					<div class="form-group">
+						 <input type="number" id="userid" name="userid" class="form-control" placeholder="Username" autocomplete="off" required>
+					</div>
+					<div class="form-group">
+						<input type="password" id="password1" name="password1" class="form-control"  autocomplete="off" placeholder="Password" required>
+					</div>
+									
+					<br>
+					<button type="button" id="login-btn" class="btn btn-primary" onclick="verify()">Submit</button>
+					<a href="" color="black" style="float:right;">Forgot Password</a>
+				</form>
+			</div>
+		</div>
+		
+		
+	</div>
+<script>
+	function verify(){ 
+	  var id=document.getElementById('userid').value;
+	  var psd=document.getElementById('password1').value;
+	  var obj={"userId":id,"passwd":psd};
+	  console.log(obj);
+	  fetch("http://localhost:8080/Reimbursement/webapi/controller/login", {
+			 body: JSON.stringify(obj),
+			 headers: {
+				 "Content-Type": "application/json",
+				 // "Content-Type": "multipart/form-data",
+			 },
+			 method: "POST"
+		 })
+	   .then((response)=>response.json())
+	   .then((json)=>displayProfile(json))
+	   .catch(err=>console.log('Request failed'));
+	   function displayProfile(res){
+			 if(res.status===1){
+				 if(res.role==="manager"){
+					 window.location.href="managerHomePage.html";
+				 }
+				 else{
+					 window.location.href="EmployeeHome.html"; 
+				 }
+			 }
+			 else{
+			 alert("Incorrect password");
+		 } 
+ 	 }
+  }
+</script>
+</body>
+</html>

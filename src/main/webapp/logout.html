@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            fetch("http://localhost:8080/Reimbursement/webapi/controller/logout")
+            .then(response=>response.json())
+            .then(data=>sessionOut(data))
+            .catch(err=>console.log('Request failed'));
+            function sessionOut(data)
+            {
+                if(data.userId===0)
+                {
+                    window.location.href="login.html";
+                }
+            }
+        </script>
+    </head>
+</html>

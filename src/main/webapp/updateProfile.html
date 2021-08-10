@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="mystyle.css">
+    <style type="text/css">
+    body{
+        background-image: url('probg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    form{
+        padding: 10px;
+        padding-top: 20px;
+        width: 100%;
+       text-align: center;
+      
+       border-radius: 25px 25px 0px 0px;
+       background-color: rgb(216, 206, 206);
+       border:none;
+        
+    }
+    table{
+        border:none;
+    }
+   h2{
+    font-style: italic;
+    padding-top:3%;
+    color: violet;
+   }
+    </style>
+</head>
+<body>
+	<header>
+        <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: hotpink;">
+                    <img src="logo.jpg" width="30px" height="30px">
+                    STAR</a>
+                  </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="EmployeeHome.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Reimbursement Request
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="Request.html">Add Request</a>
+                  <a class="dropdown-item" href="requestPending.html">Pending Request</a>
+                  <a class="dropdown-item" href="requestAccepted.html">Accepted Request</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="EmployeeProfile.html">Profile</a>
+              </li>  
+              <li class="nav-item">
+                <a class="nav-link" href="logout.html">Logout</a>
+              </li>             
+            </ul>
+          </nav>
+    </header>
+	<div>
+        <div>
+            <h2 style="color:indigo;"><center><i>Profile</i></center></h2>
+        </div>
+        <br>
+        <br>
+            <section>
+                <aside style="margin-left:40px;height: 100%">
+                </aside>
+                <main style="float:left;padding-left:10%;width:80%;">
+                    <div id="profile">
+                    </div>
+                    <center><button type="button" class="btn btn-success" onclick="updateProfile()" style="width: 100%;">Update</button></center>
+                </main>
+            </section>	
+	</div>
+    <script>
+        fetch('http://localhost:8080/Reimbursement/webapi/controller/profile')
+        .then((response)=>response.json())
+        .then((json)=>displayProfile(json))
+        .catch(err=>console.log('Request failed'));
+        function displayProfile(response)
+        {
+            var data1=response;  
+            let output='';
+           for(var d1 of data1)
+            {
+                var birth=new Date(d1.dob).toLocaleDateString("en-US");
+                output+=`
+                <form name="update">
+                <table class="table table-borderless">
+                    <thead></thead>
+                    <tbody>
+                        <tr scope="row">
+                            <td>EMPLOYEE ID</td>
+                            <td><input type="number" name="empId" id="empId" value=${d1.empId} class="form-control" readonly></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>FIRST NAME</td>
+                            <td><input type="text" name="firstName" id="firstName" value=${d1.firstName} class="form-control" readonly></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>LAST NAME</td>
+                            <td><input type="text" name="lastName" id="lastName" value=${d1.lastName} class="form-control" readonly></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>GENDER</td>
+                            <td><input type="text" name="gender" id="gender" value=${d1.gender} class="form-control" readonly></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>DATE OF BIRTH</td>
+                            <td><input type="text" name="dob" id="dob" value=${birth} class="form-control" readonly></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>AGE</td>
+                            <td><input type="number" name="age" id="age" value=${d1.age} class="form-control"></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>EAMIL ID</td>
+                            <td><input type="email" name="emailid" id="emailid" value=${d1.emailid} class="form-control"></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>DESIGNATION</td>
+                            <td><input type="text" name="designation" id="designation" value=${d1.designation} class="form-control"></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>DOOR NUMBER</td>
+                            <td><input type="text" name="doornumber" id="doornumber" value=${d1.doornumber} class="form-control"></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>STREET NAME</td>
+                            <td><input type="text" name="street" id="street" value=${d1.street} class="form-control"></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>DISTRICT</td>
+                            <td><input type="text" name="district" id="district" value=${d1.district} class="form-control"></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>CONTACT NO</td>
+                            <td><input type="tel" name="contactno" id="contactno" value=${d1.contactno} pattern="[0-9]{10}" class="form-control"></td>
+                        </tr>
+                        <tr scope="row">
+                            <td>PINCODE</td>
+                            <td><input type="number" name="pincode" id="pincode" value=${d1.pincode} class="form-control"></td>
+                        </tr>
+                       
+                </form>
+                `;
+            }
+        document.getElementById('profile').innerHTML=output;
+        }
+        function updateProfile(){
+            var empId=document.getElementById("empId").value;
+            var firstName=document.getElementById("firstName").value;
+            var lastName=document.getElementById("lastName").value;
+            var dob=document.getElementById("dob").value;
+            var age=document.getElementById("age").value;
+            var gender=document.getElementById("gender").value;
+            console.log(gender);
+            var emailid=document.getElementById("emailid").value;
+            //var user_password=document.getElementById("user_password").value;
+            //var confirm_password=document.getElementById("confirm_password").value;
+            var designation=document.getElementById("designation").value;
+            var doorNumber=document.getElementById("doornumber").value;
+            var street=document.getElementById("street").value;
+            var district=document.getElementById("district").value;
+            var pincode=document.getElementById("pincode").value;
+            var phone=document.getElementById("contactno").value;
+            var obj={"empId":empId,"dob":dob,"age":age,"emailid":emailid,"designation":designation,"doornumber":doorNumber,"street":street,"district":district,"pincode":pincode,"contactno":phone};
+            console.log(obj);
+            fetch("http://localhost:8080/Reimbursement/webapi/controller/update", {
+                    body: JSON.stringify(obj),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    method: "PUT"
+                })
+            .then((response)=>response.json())
+            .then((json)=>display(json))
+            .catch(err=>console.log('Request failed'));
+        }
+        function display(res){
+			 if(res.status===1){
+					alert("Updated Sucessfully!!!");
+				 }
+			 else{
+			 alert("Not updated");
+		 } 
+        }
+    </script>
+</body>
+</html>

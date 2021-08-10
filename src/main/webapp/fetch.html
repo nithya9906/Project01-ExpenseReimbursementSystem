@@ -1,0 +1,23 @@
+<html>
+    <head>
+<script>
+fetch('http://localhost:8080/Reimbursement/webapi/controller/login')
+//fetch('http://localhost:8080/03RestAPI/webapi/controller/employees')
+//fetch('http://3.142.212.137:8081/06restapi/webapi/controller/json')
+// Handle success
+.then(response => response.json())  // convert to json
+.then(json => populateData(json))   //print data to console
+.catch(err => console.log('Request Failed', err)); // Catch errors
+function populateData(response) {
+    var dataSection = document.getElementById('myData');
+    var data1=response;
+    for (var d1 of data1){
+      var dataList=document.createElement("li");
+      dataList.innerHTML=d1.empid+" "+d1.first_name+" "+d1.last_name;
+      dataSection.append(dataList);
+    }
+}
+</script>
+</head>
+<h3 id="myData"></h3>
+</html>

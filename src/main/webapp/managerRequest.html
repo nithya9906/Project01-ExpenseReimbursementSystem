@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Request</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="mystyle.css">
+        <style type="text/css">
+        .container{
+            padding-top: 15px;
+            padding-bottom: 15px;
+           
+           
+            
+
+        }
+        /* background-image: url("expenses.jpg");
+         background-color: rgb(223, 206, 215);*/
+        label{
+            color: darkblue;
+            font-weight: 700;
+            font-size: larger;
+        }
+        form{
+       
+        padding: 10px;
+        padding-top: 30px;
+        width: 60%;
+       text-align: center;
+       opacity: 1.0;
+      
+        
+    }
+    #inputState{
+        background-color: darkgrey;
+        height: 40px;
+        width: 70%;
+        padding-left: 20px;
+        float: left;
+    }
+    input{
+        border: none;
+        outline: none;
+        background: none;
+        color:rgb(49, 142, 204);
+        font-size: 18px;
+        width: 80%;
+        float: left;
+        margin: 0 10px;
+        border-bottom: 3px solid rgb(20, 20, 17);
+    }
+    #receipt{
+        border-bottom:0px;
+    }
+    h2{
+        display:block;
+        background-color: brown;
+        color: white;
+        font-style: italic;
+        padding: 10px;
+        font-family: serif;
+    }
+    .heading {
+       
+        animation-name: example;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        }
+    @keyframes example {
+        0%   {color: red;}
+        25%  {color: yellow;}
+        50%  {color: blue;}
+        100% {color: green;}
+        }
+        </style>
+    </head>
+    <body>
+        <header>
+           <!-- <center><h1 class="heading">STAR COMPANY</h1></center>-->
+            <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: hotpink;">
+                        <img src="logo.jpg" width="30px" height="30px">
+                        STAR</a>
+                      </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="#">Registration</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Reimbursement Request
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Add Request</a>
+                      <a class="dropdown-item" href="viewPending.html">Pending Request</a>
+                      <a class="dropdown-item" href="viewAccepted.html">Accepted Request</a>
+                    </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="EmployeeProfile.html">Profile</a>
+                  </li>              
+                </ul>
+              </nav>
+        </header>
+        
+        <div class="bgImage"> </div>
+            <br>
+            <div class="container">
+                <center>
+                    <img src="expenses.jpg" height="200px" width="100%">
+                    <br>
+                    <br>
+                    <h2>Expense Reimbursement Form</h2>
+                   
+                    <form id="requestForm">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col col-md-4">
+                                    <label>Start Date</label>
+                                </div>
+                                <div class="col col-md-8">
+                                    <input type="date"  id="startDate" name="startDate"  placeholder="">
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col col-md-4">
+                                    <label>End Date</label>
+                                </div>
+                                <div class="col col-md-8">
+                                    <input type="date"  id="endDate" name="endDate"  placeholder="">
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col col-md-4">
+                                    <label>Request Type</label>
+                                </div>
+                                <div class="col col-md-8">
+                                    <select id="inputState" name="requestType" >
+                                        <option selected>Choose...</option>
+                                        <option value="FoodCharge">Foodcharge</option>
+                                        <option value="TravelCharge">Travel charge</option>
+                                        <option value="AccomodationCharge">Accomodation charge</option>
+                                    </select>
+                                </div>   
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col col-md-4">
+                                    <label>Amount</label>
+                                </div>
+                                <div class="col col-md-8">
+                                    <input type="number"  id="amount" name="amount"  placeholder="400">
+                                </div>   
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col col-md-4">
+                                    <label>Receipt</label>
+                                </div>
+                                <div class="col col-md-8">
+                                    <input type="file" name="receipt" id="receipt">
+                                </div>   
+                            </div>
+                        </div>  
+                        <div class="form-group clearfix">
+                            <div class="row">
+                                <div class="col-md-3 offset-md-3">
+                                    <button type="button" id="request-btn" class="btn btn-primary" onclick="add()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </center>
+            </div>
+        <script>
+            function add(){ 
+              var startDate=document.getElementById('startDate').value;
+              console.log(startDate);
+              var endDate=document.getElementById('endDate').value;
+              console.log(endDate);
+              var requestType=document.getElementById('inputState').value;
+              console.log(requestType);
+              var amount=document.getElementById('amount').value;
+              console.log(amount);
+              var obj={"startDate":startDate,"endDate":endDate,"description":requestType,"amount":amount};
+              console.log(obj);
+              fetch("http://localhost:8080/Reimbursement/webapi/controller/add", {
+                     body: JSON.stringify(obj),
+                     headers: {
+                         "Content-Type": "application/json",
+                         // "Content-Type": "multipart/form-data",
+                     },
+                     method: "POST"
+                 })
+               .then((response)=>response.json())
+               .then((json)=>displayProfile(json))
+               .catch(err=>console.log('Request failed'));
+               function displayProfile(res){
+                     if(res.status===1){
+                         alert("Success");
+                     }
+                         else{
+                             alert("failed");
+                         }
+                 } 
+              }
+        </script>
+        
+        </body>
+        
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="mystyle.css">
+    <style type="text/css">
+   .data-panel{
+        float:left;
+        margin-left:40px;
+       
+        height: 100%;
+        
+       
+    }
+   
+    .side-panel{
+        float:left;
+       
+        border-radius:25px 0 0 25px;
+        background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+       background: linear-gradient(to right, #ee5a6f, #f29263);
+       
+    }
+    .container{
+        margin:20px; 
+    }
+   
+    .row{
+        border: 3px solid rgb(112, 33, 33);
+        border-radius:25px;
+    }
+    table{
+        border:none;
+    }
+   h2{
+    font-style: italic;
+    padding-top:5%;
+    color: violet;
+   }
+   
+    </style>
+</head>
+<body>
+	<header>
+        <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: hotpink;">
+                    <img src="logo.jpg" width="30px" height="30px">
+                    STAR</a>
+                  </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="managerHomePage.html">HOME</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="EmployeeRegisteration.html">REGISTRATION</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="AllProfile.html">EMPLOYEE PROFILE</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  REIMBURSEMENT REQUEST
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="allrequest.html">ALL REQUEST</a>
+                  <a class="dropdown-item" href="viewPending.html">PENDING REQUEST</a>
+                  <a class="dropdown-item" href="viewAccepted.html">ACCEPTED REQUEST</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">PROFILE</a>
+              </li>  
+              <li class="nav-item">
+                <a class="nav-link" href="logout.html">LOGOUT</a>
+              </li>             
+            </ul>
+          </nav>
+    </header>
+    <center>
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-3 side-panel">
+                           <center id="avatar">
+                             <!-- <img src="proavatar.png" width="200px" height="200px" style="border-radius:25%;padding-top:20%">--> 
+                            </center> 
+                    </div>
+                    <div class="col col-md-7 data-panel">
+                      
+                            <h2 style="color:indigo;padding-bottom: 10px;"><center>Profile</center></h2>
+                            <div id="profile">
+                            </div>
+                            <center>
+                                <a href="mupdateProfile.html"><button type="button" class="btn btn-primary">Edit Profile</button></a>
+                                <a href="mchangePassword.html"><button type="button" class="btn btn-primary">Change Password</button></a>
+                            </center>
+                            <br>
+                            <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+           
+    
+            
+        </center>
+    <script>
+        fetch('http://localhost:8080/Reimbursement/webapi/controller/profile')
+        .then((response)=>response.json())
+        .then((json)=>displayProfile(json))
+        .catch(err=>console.log('Request failed'));
+        function displayProfile(response)
+        {
+            
+            var data1=response;
+           var gend='';
+            let output='';
+           for(var d1 of data1)
+            {
+                gend=d1.gender;
+                var birth=new Date(d1.dob).toLocaleDateString("en-US");
+                output+=`
+                <table class="table table-borderless>
+                    <thead>Profile</thead>
+                    <tbody>
+                        <tr scope="row">
+                            <td>Employee id</td>
+                            <td>${d1.empId}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>First Name</td>
+                            <td>${d1.firstName}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Last Name</td>
+                            <td>${d1.lastName}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Date of birth</td>
+                           
+                            <td>${birth}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Age</td>
+                            <td>${d1.age}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Email id</td>
+                            <td>${d1.emailid}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Designation</td>
+                            <td>${d1.designation}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Door number</td>
+                            <td>${d1.doornumber}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Street name</td>
+                            <td>${d1.street}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>District</td>
+                            <td>${d1.district}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Contact no</td>
+                            <td>${d1.contactno}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Gender</td>
+                            <td>${d1.gender}</td>
+                        </tr>
+                        <tr scope="row">
+                            <td>Pincode</td>
+                            <td>${d1.pincode}</td>
+                        </tr>
+                `;
+            }
+            if(gend=="male")
+            {
+                document.getElementById('avatar').innerHTML=`<img src="male.png" width="200px" height="200px" style="float: left;border-radius: 50%;">`;
+            }
+            else{
+                document.getElementById('avatar').innerHTML=`<img src="female.png" width="200px" height="200px" style="float: left;border-radius: 50%;">`;
+            }
+        document.getElementById('profile').innerHTML=output;
+        }
+    </script>
+</body>
+</html>
