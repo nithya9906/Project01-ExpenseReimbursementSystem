@@ -115,7 +115,7 @@
             var empId=document.getElementById('empId').value;
             var obj={"userId":empId};
                 console.log(obj);
-                fetch("http://localhost:8080/Reimbursement/webapi/controller/searchProfile", {
+                fetch("http://18.117.138.163:8081/Reimbursement/webapi/controller/searchProfile", {
                   body: JSON.stringify(obj),
                   headers: {
                     "Content-Type": "application/json",
@@ -231,7 +231,7 @@
         }
         function displayAllProfile()
         {
-            fetch("http://localhost:8080/Reimbursement/webapi/controller/allprofile")
+            fetch("http://18.117.138.163:8081/Reimbursement/webapi/controller/allprofile")
               .then((response)=>response.json())
               .then((json)=>displayAllProfileDetails(json))
               .catch(err=>console.log('Request failed'));
