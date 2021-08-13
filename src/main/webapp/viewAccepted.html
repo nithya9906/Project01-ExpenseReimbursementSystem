@@ -85,7 +85,7 @@
             </center>
             <div id="pending"></div>
             <script>
-              fetch('http://localhost:8080/Reimbursement/webapi/controller/accepted')
+              fetch('http://18.117.138.163:8081/Reimbursement/webapi/controller/accepted')
               .then((response)=>response.json())
               .then((json)=>displayProfile(json))
               .catch(err=>console.log('Request failed'));
@@ -135,14 +135,14 @@
                 var id=document.getElementById("empId").value;
                 if(id=="")
                 {
-                  fetch('http://localhost:8080/Reimbursement/webapi/controller/accepted')
+                  fetch('http://18.117.138.163:8081/Reimbursement/webapi/controller/accepted')
                   .then((response)=>response.json())
                   .then((json)=>displayProfile(json))
                   .catch(err=>console.log('Request failed')); 
                 }
                 var obj={"userId":id};
                 console.log(obj);
-                fetch("http://localhost:8080/Reimbursement/webapi/controller/searchAccepted", {
+                fetch("http://18.117.138.163:8081/Reimbursement/webapi/controller/searchAccepted", {
                   body: JSON.stringify(obj),
                   headers: {
                     "Content-Type": "application/json",
