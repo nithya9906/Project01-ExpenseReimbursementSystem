@@ -86,7 +86,7 @@
             <br>
             <div id="pending"></div>
             <script>
-              fetch('http://localhost:8080/Reimbursement/webapi/controller/pending')
+              fetch('http://18.117.138.163:8081/Reimbursement/webapi/controller/pending')
               .then((response)=>response.json())
               .then((json)=>displayProfile(json))
               .catch(err=>console.log('Request failed'));
@@ -139,7 +139,7 @@
               {
                 var obj={"empId":eid,"requestId":rid};
                 console.log(obj);
-                fetch("http://localhost:8080/Reimbursement/webapi/controller/acceptRequest", {
+                fetch("http://18.117.138.163:8081/Reimbursement/webapi/controller/acceptRequest", {
                   body: JSON.stringify(obj),
                   headers: {
                     "Content-Type": "application/json",
@@ -155,7 +155,7 @@
               {
                 var obj={"empId":eid,"requestId":rid};
                 console.log(obj);
-                fetch("http://localhost:8080/Reimbursement/webapi/controller/rejectRequest", {
+                fetch("http://18.117.138.163:8081/Reimbursement/webapi/controller/rejectRequest", {
                   body: JSON.stringify(obj),
                   headers: {
                     "Content-Type": "application/json",
@@ -188,7 +188,7 @@
                 var id=document.getElementById("empId").value;
                 var obj={"userId":id};
                 console.log(obj);
-                fetch("http://localhost:8080/Reimbursement/webapi/controller/searchPending", {
+                fetch("http://18.117.138.163:8081/Reimbursement/webapi/controller/searchPending", {
                   body: JSON.stringify(obj),
                   headers: {
                     "Content-Type": "application/json",
