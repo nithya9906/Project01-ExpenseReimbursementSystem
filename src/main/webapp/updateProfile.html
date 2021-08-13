@@ -85,7 +85,7 @@
             </section>	
 	</div>
     <script>
-        fetch('http://localhost:8080/Reimbursement/webapi/controller/profile')
+        fetch('http://18.117.138.163:8081/Reimbursement/webapi/controller/profile')
         .then((response)=>response.json())
         .then((json)=>displayProfile(json))
         .catch(err=>console.log('Request failed'));
@@ -178,7 +178,7 @@
             var phone=document.getElementById("contactno").value;
             var obj={"empId":empId,"dob":dob,"age":age,"emailid":emailid,"designation":designation,"doornumber":doorNumber,"street":street,"district":district,"pincode":pincode,"contactno":phone};
             console.log(obj);
-            fetch("http://localhost:8080/Reimbursement/webapi/controller/update", {
+            fetch("http://18.117.138.163:8081/Reimbursement/webapi/controller/update", {
                     body: JSON.stringify(obj),
                     headers: {
                         "Content-Type": "application/json",
