@@ -199,7 +199,7 @@
               console.log(amount);
               var obj={"startDate":startDate,"endDate":endDate,"description":requestType,"amount":amount};
               console.log(obj);
-              fetch("http://localhost:8080/Reimbursement/webapi/controller/add", {
+              fetch("http://18.117.138.163:8081/Reimbursement/webapi/controller/add", {
                      body: JSON.stringify(obj),
                      headers: {
                          "Content-Type": "application/json",
