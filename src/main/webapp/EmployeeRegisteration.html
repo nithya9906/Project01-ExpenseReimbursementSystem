@@ -276,7 +276,7 @@
             console.log(a);*/
             var obj={"firstName":firstName,"lastName":lastName,"dob":dob,"age":age,"gender":gender,"emailid":emailid,"password":user_password,"designation":designation,"doornumber":doorNumber,"street":street,"district":district,"pincode":pincode,"contactno":phone};
             console.log(obj);
-            fetch("http://localhost:8080/Reimbursement/webapi/controller/insert", {
+            fetch("http://18.117.138.163:8081/Reimbursement/webapi/controller/insert", {
                     body: JSON.stringify(obj),
                     headers: {
                         "Content-Type": "application/json",
