@@ -113,7 +113,7 @@
             
         </center>
     <script>
-        fetch('http://localhost:8080/Reimbursement/webapi/controller/profile')
+        fetch('http://18.117.138.163:8081/Reimbursement/webapi/controller/profile')
         .then((response)=>response.json())
         .then((json)=>displayProfile(json))
         .catch(err=>console.log('Request failed'));
